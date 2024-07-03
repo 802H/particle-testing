@@ -1,18 +1,18 @@
-#ifndef GEOPHONECONTROLLER_H
-#define GEOPHONECONTROLLER_H
+#ifndef COILCONTROLLER_H
+#define COILCONTROLLER_H
 
 #include "Particle.h"
 #include "DataPoint.h"
 
-class GeophoneController {
+class CoilController {
 public:
-    GeophoneController(const String& manufacturer, const String& deviceId);
+    CoilController(const String& manufacturer, const String& deviceId);
     void setup();
     void loop();
 private:
     String manufacturer;
     String deviceId;
-    bool geophoneStreamEnabled;
+    bool coilStreamEnabled;
     unsigned long lastDataGenerationTime;
     unsigned long lastPublishTime;
     const unsigned long dataGenerationInterval = 500;
@@ -21,7 +21,7 @@ private:
 
     void getSensorData();
     void publishData();
-    int controlGeophoneStream(String command);
+    int controlCoilStream(String command);
 };
 
 #endif

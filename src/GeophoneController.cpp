@@ -12,14 +12,17 @@ void GeophoneController::setup() {
 
 void GeophoneController::loop() {
     unsigned long currentTime = millis();
-    if (geophoneStreamEnabled && currentTime - lastDataGenerationTime > dataGenerationInterval) {
-        getSensorData();
-        lastDataGenerationTime = currentTime;
-    }
 
-    if (currentTime - lastPublishTime > publishInterval) {
-        publishData();
-        lastPublishTime = currentTime;
+    if (geophoneStreamEnabled) {
+        if (currentTime - lastDataGenerationTime > dataGenerationInterval) {
+            getSensorData();
+            lastDataGenerationTime = currentTime;
+        }
+
+        if (currentTime - lastPublishTime > publishInterval) {
+            publishData();
+            lastPublishTime = currentTime;
+        }
     }
 }
 
