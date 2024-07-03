@@ -1,6 +1,6 @@
 #include "CoilController.h"
 #include "Particle.h"
-#include "SimulatedSensor.h"
+#include "SineSimulatedSensor.h"
 #include "DataPoint.h"
 
 CoilController::CoilController(const String& manufacturer, const String& deviceId)
@@ -27,15 +27,15 @@ void CoilController::loop() {
 }
 
 void CoilController::getSensorData() {
-    SimulatedSensor simulatedSensor;
-    DataPoint dataPoint = simulatedSensor.getDataPoint();
+    SineSimulatedSensor sensor;
+    DataPoint dataPoint = sensor.getDataPoint();
     accumulatedData.push_back(dataPoint);
 }
 
 void CoilController::publishData() {
     // TODO: Make this more efficient by batching data points into a single Particle.publish call
     for (const auto& dataPoint : accumulatedData) {
-        String lineProtocolString = String::format("coilData,manufacturer=%s,deviceId=%s value=%d %lld\n", manufacturer.c_str(), deviceId.c_str(), dataPoint.data, dataPoint.timestamp);
+        String lineProtocolString = String::format("coilData,manufacturer=%s,deviceId=%s value=%f %lld\n", manufacturer.c_str(), deviceId.c_str(), dataPoint.data, dataPoint.timestamp);
         Particle.publish("influx_data", lineProtocolString, PRIVATE);
     }
     accumulatedData.clear();

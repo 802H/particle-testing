@@ -4,7 +4,7 @@
 #include <cstdint>
 
 struct DataPoint {
-    int data;
+    float data;
     int64_t timestamp;
 };
 

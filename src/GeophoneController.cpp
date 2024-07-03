@@ -1,6 +1,6 @@
 #include "GeophoneController.h"
 #include "Particle.h"
-#include "SimulatedSensor.h"
+#include "WhiteNoiseSimulatedSensor.h"
 #include "DataPoint.h"
 
 GeophoneController::GeophoneController(const String& manufacturer, const String& deviceId)
@@ -27,15 +27,15 @@ void GeophoneController::loop() {
 }
 
 void GeophoneController::getSensorData() {
-    SimulatedSensor simulatedSensor;
-    DataPoint dataPoint = simulatedSensor.getDataPoint();
+    WhiteNoiseSimulatedSensor sensor;
+    DataPoint dataPoint = sensor.getDataPoint();
     accumulatedData.push_back(dataPoint);
 }
 
 void GeophoneController::publishData() {
     // TODO: Make this more efficient by batching data points into a single Particle.publish call
     for (const auto& dataPoint : accumulatedData) {
-        String lineProtocolString = String::format("geophoneData,manufacturer=%s,deviceId=%s value=%d %lld\n", manufacturer.c_str(), deviceId.c_str(), dataPoint.data, dataPoint.timestamp);
+        String lineProtocolString = String::format("geophoneData,manufacturer=%s,deviceId=%s value=%f %lld\n", manufacturer.c_str(), deviceId.c_str(), dataPoint.data, dataPoint.timestamp);
         Particle.publish("influx_data", lineProtocolString, PRIVATE);
     }
     accumulatedData.clear();
