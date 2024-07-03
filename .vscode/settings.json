@@ -1,0 +1,9 @@
+{
+    "extensions.ignoreRecommendations": true,
+    "C_Cpp.default.configurationProvider": "particle.particle-vscode-core",
+    "files.associations": {
+        "*.ino": "cpp",
+        "vector": "cpp"
+    },
+    "particle.targetDevice": "e00fce68f19445848c867e2e"
+}
