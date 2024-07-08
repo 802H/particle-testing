@@ -2,6 +2,8 @@
 #include "GeophoneController.h"
 #include "CoilController.h"
 
+PRODUCT_VERSION(1);
+
 SerialLogHandler logHandler(LOG_LEVEL_INFO);
 
 String manufacturer = "PigTracks";
