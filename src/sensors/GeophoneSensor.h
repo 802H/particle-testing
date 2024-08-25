@@ -1,11 +1,9 @@
-#ifndef GEOPHONESENSOR_H
-#define GEOPHONESENSOR_H
+#pragma once
 
+#include <string>
 #include "DataPoint.h"
 
 class GeophoneSensor {
 public:
     DataPoint getDataPoint();
 };
-
-#endif

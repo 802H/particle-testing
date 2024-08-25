@@ -1,5 +1,4 @@
-#ifndef GEOPHONECONTROLLER_H
-#define GEOPHONECONTROLLER_H
+#pragma once
 
 #include "Particle.h"
 #include "DataPoint.h"
@@ -23,5 +22,3 @@ private:
     void publishData();
     int controlGeophoneStream(String command);
 };
-
-#endif
