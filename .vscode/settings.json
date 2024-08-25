@@ -5,5 +5,7 @@
         "*.ino": "cpp",
         "vector": "cpp"
     },
-    "particle.targetDevice": "e00fce68f19445848c867e2e"
+    "particle.targetDevice": "e00fce68f19445848c867e2e",
+    "particle.firmwareVersion": "6.1.1",
+    "particle.targetPlatform": "tracker"
 }
